@@ -1,0 +1,34 @@
+def bayes_monty_hall(chosen_door, player_choice):
+  doors = [1, 2, 3]
+  P_car_initial = 1/3 
+  P_goat_initial = 2/3 
+  P_Monty_reveals_goat_given_car = 1 
+  P_Monty_reveals_goat_given_goat = 1 
+
+  P_Monty_reveals_goat = (P_Monty_reveals_goat_given_car * P_car_initial)
+  (P_Monty_reveals_goat_given_goat * P_goat_initial)
+  P_win_if_switch = P_goat_initial / P_Monty_reveals_goat
+  P_win_if_stick = P_car_initial / P_Monty_reveals_goat
+  print(f"\nYou initially chose Door {chosen_door}.")
+  if player_choice.lower() == "switch":
+    print(f"Winning probability if you SWITCH: {P_win_if_switch:.2f} (or) {P_win_if_switch*100:.2f}%)")
+  elif player_choice.lower() == "stick":
+    print(f"Winning probability if you STICK: {P_win_if_stick:.2f} or {P_win_if_stick*100:.2f}%)")
+  else:
+    print("Invalid choice! Please enter 'stick' or 'switch'.")
+while True:
+  try:
+    chosen_door = int(input("Choose a door (1, 2, or 3): "))
+    if chosen_door in [1, 2, 3]:
+      break
+    else:
+      print("Invalid input! Please enter 1, 2, or 3.")
+  except ValueError:
+    print("Invalid input! Please enter a number (1, 2, or 3).")
+while True:
+  player_choice = input("Do you want to 'stick' with your choice or 'switch' after Monty opens a door? ").strip().lower()
+  if player_choice in ["stick", "switch"]:
+    break
+  else:
+    print("Invalid choice! Please enter 'stick' or 'switch'.")
+bayes_monty_hall(chosen_door, player_choice)
